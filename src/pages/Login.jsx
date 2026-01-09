@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import { useState } from "react";
+
 const Login = () => {
+    const APIURL = import.meta.env.VITE_RENDER_URL;
     const navigate = useNavigate();
     const [login, setLogin] = useState({
         Login: "",
@@ -12,7 +14,7 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            const res = await fetch("http://localhost:3000/login",  {
+            const res = await fetch(`${APIURL}/login`,  {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
