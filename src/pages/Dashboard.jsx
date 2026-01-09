@@ -13,15 +13,15 @@ const Dashboard = () => {
 
   const cargarDatos = async () => {
     try {
-      const resProd = await fetch(`${VITE_API_URL}/products`);
+      const resProd = await fetch(`${API_URL}/products`);
       const prodData = await resProd.json();
       setProductos(prodData.length);
 
-      const resMov = await fetch(`${VITE_API_URL}/movements`);
+      const resMov = await fetch(`${API_URL}/movements`);
       const movData = await resMov.json();
       setMovimientos(movData.length);
 
-      const resCat = await fetch(`${VITE_API_URL}/categories`);
+      const resCat = await fetch(`${API_URL}/categories`);
       const catData = await resCat.json();
       setCategorias(catData.length);
     } catch (error) {
