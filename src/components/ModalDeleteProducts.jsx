@@ -1,12 +1,13 @@
 import React from "react";
 
 const ModalDeleteProducts = ({ isOpen, onClose, product, onDelete }) => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   if (!isOpen || !product) return null;
 
   const handleDelete = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/products/${product.id_producto}`,
+        `${API_URL}/products/${product.id_producto}`,
         { method: "DELETE" }
       );
 

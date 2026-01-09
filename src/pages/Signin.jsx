@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Signin = () => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const navigate = useNavigate()
   const [user, setUser] = useState({
     ID_Usuario: "",
@@ -31,7 +32,7 @@ const Signin = () => {
     const { Contrasena2, ...userData } = user;
 
     try {
-        const res = await fetch("http://localhost:3000/signin", {
+        const res = await fetch(`${API_URL}/signin`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

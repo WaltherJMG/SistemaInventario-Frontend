@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const [productos, setProductos] = useState(0);
   const [movimientos, setMovimientos] = useState(0);
   const [categorias, setCategorias] = useState(0);
@@ -12,15 +13,15 @@ const Dashboard = () => {
 
   const cargarDatos = async () => {
     try {
-      const resProd = await fetch("http://localhost:3000/products");
+      const resProd = await fetch(`${VITE_API_URL}/products`);
       const prodData = await resProd.json();
       setProductos(prodData.length);
 
-      const resMov = await fetch("http://localhost:3000/movements");
+      const resMov = await fetch(`${VITE_API_URL}/movements`);
       const movData = await resMov.json();
       setMovimientos(movData.length);
 
-      const resCat = await fetch("http://localhost:3000/categories");
+      const resCat = await fetch(`${VITE_API_URL}/categories`);
       const catData = await resCat.json();
       setCategorias(catData.length);
     } catch (error) {
@@ -43,9 +44,9 @@ const Dashboard = () => {
 
     try {
       const [prodRes, movRes, catRes] = await Promise.all([
-        fetch("http://localhost:3000/products"),
-        fetch("http://localhost:3000/movements"),
-        fetch("http://localhost:3000/categories"),
+        fetch(`${API_URL}/products`),
+        fetch(`${API_URL}/movements`),
+        fetch(`${API_URL}/categories`),
       ]);
 
       const products = await prodRes.json();

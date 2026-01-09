@@ -16,6 +16,7 @@ import ModalUpdateProducts from "./ModalUpdateProducts";
 import ModalDeleteProducts from "./ModalDeleteProducts";
 
 const TableProducts = () => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selections, setSelections] = useState([]);
@@ -56,7 +57,7 @@ const TableProducts = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/products");
+      const res = await fetch(`${API_URL}/products`);
       const data = await res.json();
       setProducts(data);
     } catch (err) {
@@ -70,7 +71,7 @@ const TableProducts = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/categories")
+    fetch(`${API_URL}/categories`)
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(err => console.log(err));

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ModalAddProducts = ({ isOpen, onClose, onSave, categories }) => {
 
-    
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const [formData, setFormData] = useState({
     ID_Producto: "",
     ID_Categoria: "",
@@ -32,7 +32,7 @@ const ModalAddProducts = ({ isOpen, onClose, onSave, categories }) => {
     onClose();
 
      try {
-    const res = await fetch("http://localhost:3000/add-products", {
+    const res = await fetch(`${API_URL}/add-products`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

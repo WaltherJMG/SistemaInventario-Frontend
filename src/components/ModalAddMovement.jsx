@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const ModalAddMovement = ({ isOpen, onClose, onSave }) => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const [form, setForm] = useState({
     tipoMovimiento: "",
     cantidad: "",
@@ -14,13 +15,13 @@ const ModalAddMovement = ({ isOpen, onClose, onSave }) => {
   const [products, setProducts] = useState([]);
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:3000/users");
+    const res = await fetch(`${API_URL}/users`);
     const data = await res.json();
     setUsers(data);
   };
 
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:3000/products");
+    const res = await fetch(`${API_URL}/products`);
     const data = await res.json();
     setProducts(data.rows ?? data);
   };
@@ -35,7 +36,7 @@ const ModalAddMovement = ({ isOpen, onClose, onSave }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:3000/movements", {
+    const res = await fetch(`${API_URL}/movements`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),

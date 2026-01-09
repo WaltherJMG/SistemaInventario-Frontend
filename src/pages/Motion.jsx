@@ -8,13 +8,14 @@ import { arrowDownCircleOutline } from "ionicons/icons";
 import { IonIcon } from "@ionic/react";
 
 const TableMovements = () => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const [movements, setMovements] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchMovements = async () => {
     setLoading(true);
-    const res = await fetch("http://localhost:3000/movements");
+    const res = await fetch(`${API_URL}/movements`);
     const data = await res.json();
     setMovements(data);
     setLoading(false);
@@ -69,7 +70,7 @@ const TableMovements = () => {
   const deleteMovement = async (id) => {
     if (!window.confirm("¿Seguro que deseas eliminar este movimiento?")) return;
 
-    await fetch(`http://localhost:3000/movements/${id}`, {
+    await fetch(`${API_URL}/movements/${id}`, {
       method: "DELETE",
     });
 

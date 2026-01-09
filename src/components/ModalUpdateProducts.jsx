@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const ModalUpdateProducts = ({ isOpen, onClose, onSave, product, categories }) => {
+  const API_URL = import.meta.env.VITE_RENDER_URL;
   const [formData, setFormData] = useState({
     ID_Producto: "",
     ID_Categoria: "",
@@ -39,7 +40,7 @@ const ModalUpdateProducts = ({ isOpen, onClose, onSave, product, categories }) =
 
   try {
     const res = await fetch(
-      `http://localhost:3000/products/${formData.ID_Producto}`,
+      `${API_URL}/products/${formData.ID_Producto}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
